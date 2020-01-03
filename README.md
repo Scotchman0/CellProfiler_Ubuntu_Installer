@@ -13,10 +13,17 @@ proven to work on Ubuntu 18.04 and installs all dependencies. This script can be
 3. Run the script with:
 > sudo ./CellProfiler_Install.sh
 
-4. There is a point about 3-5 minutes after you start the script that will require you to edit ~/Cellprofiler/setup.py to lower the required python version from 3.7 to 3.6. (3.7 seems to throw many more errors than 3.6). You should also be made aware that this script will set your default python3 and python variable to python3.6 for ease of install. You can set these back to a different version by simply installing a later version of python (which will update the python3 symlink), or by manually editing the link file in /usr/local/bin/ with: 
+4. There is a point after you start the script that will require you to edit ~/Cellprofiler/setup.py to lower the required python version from 3.7 to 3.6. You'll have to make the edit then press return to continue running the installer.  (3.7 seems to throw many more errors than 3.6). You should also be made aware that this script will set your default python3 and python variable to python3.6 for ease of install. You can set these back to a different version by simply installing a later version of python (which will update the python3 symlink), or by manually editing the link file in /usr/local/bin/ with: 
 >   cd /usr/bin && rm ./python && ln -s python2.7 ./python
 >   cd /usr/bin && rm ./python3 && ln -s python3.7 ./python3
 (edit the before line to whatever version you want "python" to summon - vs python3 summoning build of 3.5/3.7 etc)
+
+5. Wait. The script takes up to an hour (mostly because wxPython build from binary takes FOREVER), and it was preferable to see the output rather than believe that the script was hanging for a full hour on "building wxPython from wheel..."
+
+6. The script will launch cellprofiler and you can call the app with "cellprofiler" in a terminal window from its install path. 
+
+Comments on code are explanatory enough (I hope) to explain why things are occurring and what lives where for better troubleshooting in the future. 
+
 
 Submit some issue logs here if you run into trouble - usually the big issue is that Javabridge will claim to not be installed (but it is). It got installed in the wrong spot. There's a line that fixes this in the current build: 
 
