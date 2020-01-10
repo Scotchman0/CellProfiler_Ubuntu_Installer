@@ -156,12 +156,15 @@ sleep 5
 echo "cloning plugins and moving them up one level to default plugins directory"
 cd ~/CellProfiler/plugins && git clone https://github.com/CellProfiler/Cellprofiler-Plugins
 #sleep 1
-mv ~/Cellprofiler/plugins/CellProfiler-Plugins/* ~/CellProfiler/plugins/
+#mv ~/Cellprofiler/plugins/Cellprofiler-Plugins/* ~/CellProfiler/plugins/
+mv ~/CellProfiler/plugins/Cellprofiler-Plugins/* ~/CellProfiler/plugins/
+
 
 #added modified versions of __init__.py to /cellprofiler/modules to add default baseline files
 #copied from /tmp/cellprofilerstuff/ 
 cd ~/Cellprofiler/plugins && cp classifypixelsunet.py ~/CellProfiler/cellprofiler/modules
 cp /tmp/cellprofilerstuff/* ~/CellProfiler/cellprofiler/modules/
+cp ~/CellProfiler/plugins/
 
 
 #Create a start command "CellProfiler" as an export so you can call it directly in terminal
