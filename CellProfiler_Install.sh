@@ -172,6 +172,9 @@ echo "adding cellprofiler as an export from /usr/local/bin"
 python -m site --user-base
 export PATH="$HOME/.local/bin:$PATH"
 
+#install tensorflow *(required for keras init of classifypixelsunet.py)
+python3.6 -m pip install tensorflow
+
 #install requirements for plugins:
 cd ~/Cellprofiler/plugins && pip install requirements.txt
 
