@@ -175,6 +175,11 @@ export PATH="$HOME/.local/bin:$PATH"
 #install tensorflow *(required for keras init of classifypixelsunet.py)
 python3.6 -m pip install tensorflow
 
+#patch added 1_20_20: - botocore has an interdependency error that requires a manual re-installation to the latest patch version:
+#otherwise clashes with docutils
+python -m pip uninstall botocore -y
+python -m pip install botocore -y
+
 #install requirements for plugins:
 cd ~/Cellprofiler/plugins && pip install requirements.txt
 
