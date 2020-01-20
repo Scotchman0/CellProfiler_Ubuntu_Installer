@@ -162,7 +162,7 @@ mv ~/CellProfiler/plugins/Cellprofiler-Plugins/* ~/CellProfiler/plugins/
 
 #added modified versions of __init__.py to /cellprofiler/modules to add default baseline files
 #copied from /tmp/cellprofilerstuff/ 
-cd ~/Cellprofiler/plugins && cp classifypixelsunet.py ~/CellProfiler/cellprofiler/modules
+cd ~/CellProfiler/plugins && cp classifypixelsunet.py ~/CellProfiler/cellprofiler/modules
 cp /tmp/cellprofilerstuff/* ~/CellProfiler/cellprofiler/modules/
 cp ~/CellProfiler/plugins/
 
