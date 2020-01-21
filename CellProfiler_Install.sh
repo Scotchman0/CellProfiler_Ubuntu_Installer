@@ -178,7 +178,7 @@ python3.6 -m pip install tensorflow
 #patch added 1_20_20: - botocore has an interdependency error that requires a manual re-installation to the latest patch version:
 #otherwise clashes with docutils
 python -m pip uninstall botocore -y
-python -m pip install botocore -y
+python -m pip install botocore
 
 #install requirements for plugins:
 cd ~/Cellprofiler/plugins && pip install requirements.txt
