@@ -25,7 +25,7 @@ For code base support after installation, check the cellprofiler page: https://g
 
 4. There is a point after you start the script that will require you to edit ~/Cellprofiler/setup.py to lower the required python version from 3.7 to 3.6. You'll have to make the edit then press return to continue running the installer.  (3.7 seems to throw many more errors than 3.6). 
 
-5. Wait. The script takes up to an hour (mostly because wxPython build from binary takes FOREVER), and it was preferable to see the output rather than believe that the script was hanging for a full hour on "building wxPython from wheel..."
+5. Wait. The script takes up to 10 mins on less nice systems (a few mins on great systems) and up to an hour on a VM with 2gb ram. (mostly because wxPython build from binary takes FOREVER), and it was preferable to see the output rather than believe that the script was hanging for a full hour on "building wxPython from wheel..."
 
 6. The script will launch cellprofiler and you can call the app with "cellprofiler" in a terminal window from its install path. 
 
