@@ -33,6 +33,7 @@ Comments on code are explanatory enough (I hope) to explain why things are occur
 
 
 *NOTICE* - some modules will not function correctly unless you call cellprofiler with SUDO or as root
+
 $ sudo cellprofiler will enable unet module to run properly in your pipeline - issue#4
 
 
