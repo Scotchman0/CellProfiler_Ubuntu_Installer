@@ -32,6 +32,10 @@ For code base support after installation, check the cellprofiler page: https://g
 Comments on code are explanatory enough (I hope) to explain why things are occurring and what lives where for better troubleshooting in the future. 
 
 
+*NOTICE* - some modules will not function correctly unless you call cellprofiler with SUDO or as root
+$ sudo cellprofiler will enable unet module to run properly in your pipeline - issue#4
+
+
 
 *NOTES*
 Submit some issue logs here if you run into trouble - usually the big issue is that Javabridge will claim to not be installed (but it is). It got installed in the wrong spot. There's a line that fixes this in the current build: 
