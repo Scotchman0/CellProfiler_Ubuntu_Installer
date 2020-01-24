@@ -13,6 +13,8 @@ Note: I do not own, nor do I support, the plugins or software that this script i
 For code base support after installation, check the cellprofiler page: https://github.com/cellprofiler/cellprofiler
 
 
+*before you begin: $ sudo apt update && sudo apt upgrade -y*
+(this is important so you can verify that apt isn't locked due to background updating before you start the install process)
 
 1. Clone this repo to your Target workstation desktop: 
 > sudo git clone https://github.com/scotchman0/CellProfiler_Ubuntu_Installer.git
