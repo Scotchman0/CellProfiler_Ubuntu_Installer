@@ -8,11 +8,6 @@
 RED=$(printf "\033[31m")
 END=$(printf "\033[0m")
 
-#Check for baseline updates before we start
-apt update && apt upgrade -y
-clear
-sleep 2
-
 echo "installing dependencies and plugins:"
 #install the required dependencies:
 apt-get install -y \
