@@ -4,7 +4,7 @@ Install script for CellProfiler v3.1.9 on Ubuntu 18.04.3 LTS(+) - bash, installs
 proven to work on Ubuntu 18.04 and installs all dependencies. For support and queries, route to the Cellprofiler page on Github. This script is simply an installer to make it easier for users to get CellProfiler on their linux workstations with a supported version of python.
 
 
-**NOTE: AT THIS TIME UBUNTU 19.X IS NOT SUPPORTED** (working on it)
+**NOTE: AT THIS TIME UBUNTU 19.X/20.X IS NOT SUPPORTED** (working on it)
 
 at time of publication- cellprofiler is not supported on version 3.x for linux, and the modules "classify" and "classifypixelsunet" are not supported on linux. Or at least not officially. This script serves to rectify that oversight.
 
