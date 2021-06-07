@@ -44,8 +44,8 @@ cp ./classify.py /tmp/cellprofilerstuff
 echo "cloning the Git Repository"
 cd ~/ && git clone https://github.com/CellProfiler/CellProfiler
 sleep 2
+cd ~/CellProfiler
 git checkout v3.1.9
-
 
 #install python3.6
 echo "installing python 3.6"
@@ -104,7 +104,7 @@ sleep 2
 cd /usr/lib/python3/dist-packages/ && ln -s apt_pkg.cpython-36m-x86_64-linux-gnu.so apt_pkg.so
 
 echo "${RED}before we proceed to the next step, open a new tab in terminal edit the file ~/Cellprofiler/setup.py${END}"
-echo "${RED}on line 84 - change the python_requires>=3.7 to 3.6${END}"
+echo "${RED}on line 93 - change the python_requires <=3.6.3 to <=3.6.9${END}"
 echo "then press return to continue script once the change is completed."
 read response4
 
@@ -151,7 +151,6 @@ sleep 5
 echo "cloning plugins and moving them up one level to default plugins directory"
 cd ~/CellProfiler/plugins && git clone https://github.com/CellProfiler/Cellprofiler-Plugins
 #sleep 1
-#mv ~/Cellprofiler/plugins/Cellprofiler-Plugins/* ~/CellProfiler/plugins/
 mv ~/CellProfiler/plugins/Cellprofiler-Plugins/* ~/CellProfiler/plugins/
 
 
@@ -159,7 +158,6 @@ mv ~/CellProfiler/plugins/Cellprofiler-Plugins/* ~/CellProfiler/plugins/
 #copied from /tmp/cellprofilerstuff/ 
 cd ~/CellProfiler/plugins && cp classifypixelsunet.py ~/CellProfiler/cellprofiler/modules
 cp /tmp/cellprofilerstuff/* ~/CellProfiler/cellprofiler/modules/
-cp ~/CellProfiler/plugins/
 
 
 #Create a start command "CellProfiler" as an export so you can call it directly in terminal
@@ -182,6 +180,42 @@ echo "Cellprofiler should now launch - may take a few moments for initialization
 echo "Don't forget to submit bugs via the git page and make adjustments/pulls as you see fit, generally I'll push them"
 echo "relatively swiftly... Cheers".
 echo "if cellprofiler starts - I HIGHLY recommend a restart before you dive in."
+
+
+#patch garbage - 6/7/21 - log updates for parsing later:
+#major edits to requirements block in setup.py --> import a modified copy I think moving forward
+#sudo pip install scipy==1.4.1
+#sudo pip install scikit-image==0.17.2
+#sudo pip install matplotlib==3.1.3
+
+
+#MODIFICATION STACK TO GET THINGS RUNNING:
+# https://github.com/CellProfiler/CellProfiler/issues/2829
+# ~/default-java/cellprofiler/gui/dialog.py --> 
+# import wx.adv
+# class AboutDialogInfo(wx.adv.AboutDialogInfo)
+
+# ~/CellProfiler/cellprofiler/gui/tools.py
+# import cStringIO --> from io import StringIO
+# fd = CStringIO.StringIO() --> fd = StringIO()
+
+# ~/CellProfiler/cellprofiler/gui/errordialog.py
+#import StringIO --> from io import StringIO
+
+# ~/cellProfiler/cellprofiler/gui/errordialog.py
+# commented both import urllib and urllib2
+# added: from urllib.request import urlopen
+
+# ~/cellprofiler/cellprofiler/modules/images.py 78 -->
+# removed import urlparse
+# added from urllib.parse import urlparse
+
+# ~/cellprofiler/cellprofiler/modules/loadimages.py
+# removed import _help
+
+# ~/cellprofiler/cellprofiler/modules/images.py
+# removed import loadimages (6)
+
 
 cellprofiler
 
