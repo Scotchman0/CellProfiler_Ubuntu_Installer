@@ -196,7 +196,7 @@ echo "if cellprofiler starts - I HIGHLY recommend a restart before you dive in."
 #sudo pip install scikit-image==0.17.2
 #sudo pip install matplotlib==3.1.3
 #numpy == 1.15.4 --> installed by default... (no change needed here)
-#
+# JAVABRIDGE needs defined exports
 
 
 #MODIFICATION STACK TO GET THINGS RUNNING:
