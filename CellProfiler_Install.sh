@@ -39,6 +39,7 @@ sleep 2
 mkdir /tmp/cellprofilerstuff
 cp ./__init__.py /tmp/cellprofilerstuff
 cp ./classify.py /tmp/cellprofilerstuff
+cp ./setup.py /tmp/cellprofilerstuff
 
 #clone the repo:
 echo "cloning the Git Repository"
@@ -46,6 +47,12 @@ cd ~/ && git clone https://github.com/CellProfiler/CellProfiler
 sleep 2
 cd ~/CellProfiler
 git checkout v3.1.9
+
+#move setup.py to backup location:
+cp setup.py /tmp/cellprofilerstuff/setup.py.original
+
+#copy in modified build script:
+cp /tmp/cellprofilerstuff/setup.py ~/CellProfiler/
 
 #install python3.6
 echo "installing python 3.6"
@@ -176,6 +183,7 @@ python -m pip install botocore
 #install requirements for plugins:
 cd ~/Cellprofiler/plugins && pip install requirements.txt
 
+
 echo "Cellprofiler should now launch - may take a few moments for initialization..."
 echo "Don't forget to submit bugs via the git page and make adjustments/pulls as you see fit, generally I'll push them"
 echo "relatively swiftly... Cheers".
@@ -187,6 +195,8 @@ echo "if cellprofiler starts - I HIGHLY recommend a restart before you dive in."
 #sudo pip install scipy==1.4.1
 #sudo pip install scikit-image==0.17.2
 #sudo pip install matplotlib==3.1.3
+#numpy == 1.15.4 --> installed by default... (no change needed here)
+#
 
 
 #MODIFICATION STACK TO GET THINGS RUNNING:
