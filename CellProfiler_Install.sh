@@ -18,6 +18,7 @@ apt-get install -y \
     libhdf5-dev        \
     libxml2-dev        \
     libxslt1-dev       \
+    openjdk-8-jdk      \
     python-dev         \
     python-pip         \
     python-h5py        \
@@ -151,7 +152,7 @@ mv ~/.local/lib/python3.6/site-packages/* /usr/local/lib/python3.6/dist-packages
 echo "installing cellprofiler"
 #Install CellProfiler
 sleep 2
-cd ~/CellProfiler && python3.6 -m pip install --editable .
+cd ~/CellProfiler && python3.6 -m pip install --user --editable . #added user access
 sleep 5
 
 #clone the additional resources into place, then puts them in the default folder location:
