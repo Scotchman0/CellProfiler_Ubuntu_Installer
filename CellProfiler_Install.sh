@@ -139,6 +139,7 @@ sleep 5
 echo "setting up JavaBridge..."
 cd /usr/lib/jvm/adoptopenjdk-8-hotspot-amd64 && JAVA_HOME=/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64 pip install javabridge --user
 export JAVA_HOME=/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64/
+#echo "export JAVA_HOME=/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64" >> ~/.*shrc
 #Install path at: /home/dhtsadmin/.local/lib/python3.6/site-packages/javabridge
 
 #sometimes Javabridge gets installed in the wrong spot because why not
@@ -163,7 +164,8 @@ mv ~/CellProfiler/plugins/Cellprofiler-Plugins/* ~/CellProfiler/plugins/
 
 
 #added modified versions of __init__.py to /cellprofiler/modules to add default baseline files
-#copied from /tmp/cellprofilerstuff/ 
+#copied from /tmp/cellprofilerstuff/  
+
 cd ~/CellProfiler/plugins && cp classifypixelsunet.py ~/CellProfiler/cellprofiler/modules
 cp /tmp/cellprofilerstuff/* ~/CellProfiler/cellprofiler/modules/
 
