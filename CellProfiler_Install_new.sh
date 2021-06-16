@@ -10,7 +10,7 @@
 
 
 #BASE SOFTWARE INSTALLATION BLOCK:
-sudo apt-get update -y
+sudo apt-get update
 sudo apt-get upgrade -y
 sudo apt-get install -y \
     build-essential    \
@@ -21,17 +21,17 @@ sudo apt-get install -y \
     libxml2-dev        \
     libxslt1-dev       \
     openjdk-8-jdk      \
-    python-dev         \
-    python-pip         \
-    python-h5py        \
-    python-matplotlib  \
-    python-mysqldb     \
-    python-scipy       \
-    python-numpy       \
-    python-pytest      \
-    python-vigra       \
-    python-wxgtk3.0    \
-    python-zmq
+    python3-dev         \
+    python3-pip         \
+    python3-h5py        \
+    python3-matplotlib  \
+    python3-mysqldb     \
+    python3-scipy       \
+    python3-numpy       \
+    python3-pytest      \
+    python3-vigra       \
+    python3-wxgtk3.0    \
+    python3-zmq
 
 #MOVE SECONDARY ASSETS TO INSTALL SPACE:
 mkdir /tmp/cellprofilerstuff
@@ -46,14 +46,15 @@ sleep 2
 cd ~/CellProfiler
 git checkout v3.1.9
 
+
 #PRE_PATCH CYTHON:
-sudo pip install --upgrade cython
+sudo pip3 install --upgrade cython
 
 #INSTALL CELLPROFILER:
-sudo pip install --user --editable .
+sudo pip install --editable . #removed --user flag
 
 #SET USER BASE:
-python -m site --user-base
+python3 -m site --user-base
 
 #ADD PATH TO YOUR LOCAL ENVIRONMENT TO START PIP PACKAGES:
 export PATH="$HOME/.local/bin:$PATH"
@@ -61,3 +62,7 @@ export PATH="$HOME/.local/bin:$PATH"
 #ADVISE USER CAN START CELLPROFILER WITH 'CELLPROFILER + LAUNCH:'
 echo "CellProfiler 3.1.9 is now installed. Script will attempt to auto-launch. If it fails"
 echo "try again with sudo as shown here: $ sudo cellprofiler"
+
+
+#########################################################################################
+#REPAIR BLOCK FOR COMPATIBILITY#
