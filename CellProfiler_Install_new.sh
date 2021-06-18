@@ -37,9 +37,10 @@ sudo apt-get install -y \
 
 #MOVE SECONDARY ASSETS TO INSTALL SPACE:
 mkdir /tmp/cellprofilerstuff
+mkdir /tmp/cellprofilerstuff/backups
 cp ./__init__.py /tmp/cellprofilerstuff
 cp ./classify.py /tmp/cellprofilerstuff
-cp ./setup.py /tmp/cellprofilerstuff
+cp ./setup.py /tmp/cellprofilerstuff/backups
 
 #CLONE THE REPOSITORY:
 echo "cloning the CellProfiler Repository to user home dir"
@@ -62,27 +63,53 @@ cp /tmp/cellprofilerstuff/setup.py ~/CellProfiler
 #sed -i 's/old-text/new-text/g' input.txt
 #MODIFICATION STACK TO GET THINGS RUNNING:
 # https://github.com/CellProfiler/CellProfiler/issues/2829
-# ~/default-java/cellprofiler/gui/dialog.py --> 
-# import wx.adv
+# ~/CellProfiler/cellprofiler/gui/dialog.py --> 
+# import wx
 # class AboutDialogInfo(wx.adv.AboutDialogInfo)
+
+#make backup:
+cp ~/CellProfiler/cellprofiler/gui/dialog.py /tmp/cellprofilerstuff/backups
+#replace import wx with import wx.adv to fix class call:
+sudo sed -i 's/import wx/import wx.adv/g' ~/CellProfiler/cellprofiler/gui/dialog.py
+sudo sed -i 's/(wx.AboutDialogInfo)/(wx.adv.AboutDialogInfo)/g' ~/CellProfiler/cellprofiler/gui/dialog.py
 
 # ~/CellProfiler/cellprofiler/gui/tools.py
 # import cStringIO --> from io import StringIO
 # fd = CStringIO.StringIO() --> fd = StringIO()
+#make backup:
+cp ~/CellProfiler/cellprofiler/gui/tools.py /tmp/cellprofilerstuff/backups
+#replace CStringIO.String() to StringIO()
+sudo sed -i 's/import cStringIO/from io import StringIO/g' ~/CellProfiler/cellprofiler/gui/tools.py
+sudo sed -i 's/cStringIO.StringIO()/StringIO()/g' ~/CellProfiler/cellprofilergui/tools.py
 
 # ~/CellProfiler/cellprofiler/gui/errordialog.py
 #import StringIO --> from io import StringIO
+#make backup:
+cp ~/CellProfiler/cellprofiler/gui/errordialog.py /tmp/cellprofilerstuff/backups
+sudo sed -i 's/import StringIO/from io import StringIO/g' ~/CellProfiler/cellprofiler/gui/errordialog.py
 
 # ~/cellProfiler/cellprofiler/gui/errordialog.py
 # commented both import urllib and urllib2
 # added: from urllib.request import urlopen
+sudo sed -i 's/import urllib/#import urllib/g' ~/CellProfiler/cellprofiler/gui/errordialog.py
+sudo sed -i 's/#import urllib2/from urllib.request import urlopen/g' ~/CellProfiler/cellprofiler/gui/errordialog.py
+
+# ~/CellProfiler/cellprofiler/modules/loadimages.py:77
+# import urlparse --> from urllib.parse import urlparse
+# make backup: 
+cp ~/CellProfiler/cellprofiler/modules/loadimages.py /tmp/cellprofilerstuff/backups
+sudo sed -i 's/import urlparse/from urllib.parse import urlparse/g' ~/CellProfiler/cellprofiler/modules/loadimages.py 
+sudo sed -i 's/import'
+
+# ~/CellProfiler/cellprofiler/modules/images.py: can't find module _help (which is in same folder)
+# I could disable this but I'd like to have it functional. 
+# breaking here <---- to resume next patch. 
 
 # ~/cellprofiler/cellprofiler/modules/images.py 78 -->
 # removed import urlparse
 # added from urllib.parse import urlparse
 
-# ~/cellprofiler/cellprofiler/modules/loadimages.py
-# removed import _help
+
 
 # ~/cellprofiler/cellprofiler/modules/images.py
 # removed import loadimages (6)
