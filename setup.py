@@ -73,17 +73,17 @@ setuptools.setup(
         "javabridge",
         "joblib",
         "mahotas",
-        "matplotlib>=2.0.0, !=2.1.0",
+        "matplotlib==3.1.3",
         "mysqlclient>=1.4.2",
-        "numpy==1.15.4",
+        "numpy==1.18.2",
         "prokaryote==2.4.1",
         "python-bioformats==1.5.2",
         "pyzmq==15.3.0",
         "raven",
         "requests",
-        "scikit-image==0.14.0",
+        "scikit-image>=0.14.0",
         "scikit-learn",
-        "scipy==1.1.0",
+        "scipy>=1.1.0",
         "six"
     ],
     license="BSD",
@@ -96,7 +96,7 @@ setuptools.setup(
         "tests*"
     ]),
     # Allow experimentation with Travis' Python 3.6.3 but not many other Py3s
-    python_requires=">=2.7, !=3.0, !=3.1, !=3.2, !=3.3, !=3.4, !=3.5, <=3.6.3",
+    python_requires=">=2.7, !=3.0, !=3.1, !=3.2, !=3.3, !=3.4, !=3.5, >=3.6.3",
     setup_requires=[
         "pytest"
     ],

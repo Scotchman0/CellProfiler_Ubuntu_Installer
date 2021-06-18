@@ -14,7 +14,7 @@ sudo apt-get update
 sudo apt-get upgrade -y
 sudo apt-get install -y \
     build-essential    \
-    cython             \
+    cython3             \
     git                \
     libmysqlclient-dev \
     libhdf5-dev        \
@@ -29,9 +29,11 @@ sudo apt-get install -y \
     python3-scipy       \
     python3-numpy       \
     python3-pytest      \
-    python3-vigra       \
-    python3-wxgtk3.0    \
-    python3-zmq
+    python-vigra       \
+    python-wxgtk3.0    \
+    python3-zmq         \
+    python3-wxgtk4.0    
+
 
 #MOVE SECONDARY ASSETS TO INSTALL SPACE:
 mkdir /tmp/cellprofilerstuff
@@ -47,11 +49,48 @@ cd ~/CellProfiler
 git checkout v3.1.9
 
 
-#PRE_PATCH CYTHON:
+#PRE_PATCH builds:
 sudo pip3 install --upgrade cython
+sudo pip3 install --upgrade scipy
+sudo pip3 install --upgrade scikit-image==0.17.2
+sudo pip3 install numpy==1.18.2
+
+#COPY IN MODIFIED SETUP.PY:
+cp /tmp/cellprofilerstuff/setup.py ~/CellProfiler
+
+#MODIFICATIONS BLOCK:
+#sed -i 's/old-text/new-text/g' input.txt
+#MODIFICATION STACK TO GET THINGS RUNNING:
+# https://github.com/CellProfiler/CellProfiler/issues/2829
+# ~/default-java/cellprofiler/gui/dialog.py --> 
+# import wx.adv
+# class AboutDialogInfo(wx.adv.AboutDialogInfo)
+
+# ~/CellProfiler/cellprofiler/gui/tools.py
+# import cStringIO --> from io import StringIO
+# fd = CStringIO.StringIO() --> fd = StringIO()
+
+# ~/CellProfiler/cellprofiler/gui/errordialog.py
+#import StringIO --> from io import StringIO
+
+# ~/cellProfiler/cellprofiler/gui/errordialog.py
+# commented both import urllib and urllib2
+# added: from urllib.request import urlopen
+
+# ~/cellprofiler/cellprofiler/modules/images.py 78 -->
+# removed import urlparse
+# added from urllib.parse import urlparse
+
+# ~/cellprofiler/cellprofiler/modules/loadimages.py
+# removed import _help
+
+# ~/cellprofiler/cellprofiler/modules/images.py
+# removed import loadimages (6)
+
+
 
 #INSTALL CELLPROFILER:
-sudo pip install --editable . #removed --user flag
+sudo pip3 install --editable . #removed --user flag
 
 #SET USER BASE:
 python3 -m site --user-base
