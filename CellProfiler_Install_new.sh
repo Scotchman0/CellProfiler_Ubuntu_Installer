@@ -101,9 +101,24 @@ cp ~/CellProfiler/cellprofiler/modules/loadimages.py /tmp/cellprofilerstuff/back
 sudo sed -i 's/import urlparse/from urllib.parse import urlparse/g' ~/CellProfiler/cellprofiler/modules/loadimages.py 
 sudo sed -i 's/import'
 
-# ~/CellProfiler/cellprofiler/modules/images.py: can't find module _help (which is in same folder)
-# I could disable this but I'd like to have it functional. 
-# breaking here <---- to resume next patch. 
+# ~/CellProfiler/cellprofiler/modules/images.py: can't find module _help
+# resolution - relative path assignment:
+cp ~/CellProfiler/cellprofiler/modules/images.py /tmp/cellprofilerstuff/backups
+sudo sed -i 's/import _help/from . import _help/g' ~/CellProfiler/cellprofiler/modules/images.py
+
+# ~/cellprofiler/cellprofiler/modules/images.py
+# no modules named 'loadimages'
+sudo sed -i 's/import loadimages/from . import loadimages/g' ~/CellProfiler/cellprofiler/modules/images.py
+
+# ~/CellProfiler/cellprofiler/modules/loadimages.py : 95 --> no module named skimage.external
+cp ~/CellProfiler/cellprofiler/modules/loadimages.py /tmp/cellprofilerstuff/backups
+# apparently scikit-images no longer ships with tifffile so calling it directly is needed:
+sudo sed -i 's/import skimage.external.tifffile/import tifffile/g' ~/CellProfiler/cellprofiler/modules/loadimages.py
+
+# ~/CellProfiler/cellprofiler/gui/moduleview.py:8 --> no module named 'Queue'
+cp ~/CellProfiler/cellprofiler/gui/moduleview.py /tmp/cellprofilerstuff/backups
+
+
 
 # ~/cellprofiler/cellprofiler/modules/images.py 78 -->
 # removed import urlparse
@@ -111,8 +126,6 @@ sudo sed -i 's/import'
 
 
 
-# ~/cellprofiler/cellprofiler/modules/images.py
-# removed import loadimages (6)
 
 
 
