@@ -117,13 +117,11 @@ sudo sed -i 's/import skimage.external.tifffile/import tifffile/g' ~/CellProfile
 
 # ~/CellProfiler/cellprofiler/gui/moduleview.py:8 --> no module named 'Queue'
 cp ~/CellProfiler/cellprofiler/gui/moduleview.py /tmp/cellprofilerstuff/backups
+sudo sed -i '/import Queue/import queue/g' ~/CellProfiler/cellprofiler/gui/moduleview.py
+sudo sed -i '/Queue.Queue()/queue.Queue()/g' ~/CellProfiler/cellprofiler/gui/moduleview.py
 
-
-
-# ~/cellprofiler/cellprofiler/modules/images.py 78 -->
-# removed import urlparse
-# added from urllib.parse import urlparse
-
+# ~/CellProfiler/cellprofiler/gui/imagesetctrl.py:19 --> no moudle named 'wx.combo'
+# currently broken --> unclear what replacement module name is, pending next patch
 
 
 
