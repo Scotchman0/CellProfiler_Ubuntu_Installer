@@ -80,7 +80,7 @@ sudo sed -i 's/(wx.AboutDialogInfo)/(wx.adv.AboutDialogInfo)/g' ~/CellProfiler/c
 cp ~/CellProfiler/cellprofiler/gui/tools.py /tmp/cellprofilerstuff/backups
 #replace CStringIO.String() to StringIO()
 sudo sed -i 's/import cStringIO/from io import StringIO/g' ~/CellProfiler/cellprofiler/gui/tools.py
-sudo sed -i 's/cStringIO.StringIO()/StringIO()/g' ~/CellProfiler/cellprofilergui/tools.py
+sudo sed -i 's/cStringIO.StringIO(/StringIO(/g' ~/CellProfiler/cellprofilergui/tools.py
 
 # ~/CellProfiler/cellprofiler/gui/errordialog.py
 #import StringIO --> from io import StringIO
@@ -117,13 +117,31 @@ sudo sed -i 's/import skimage.external.tifffile/import tifffile/g' ~/CellProfile
 
 # ~/CellProfiler/cellprofiler/gui/moduleview.py:8 --> no module named 'Queue'
 cp ~/CellProfiler/cellprofiler/gui/moduleview.py /tmp/cellprofilerstuff/backups
-sudo sed -i '/import Queue/import queue/g' ~/CellProfiler/cellprofiler/gui/moduleview.py
-sudo sed -i '/Queue.Queue()/queue.Queue()/g' ~/CellProfiler/cellprofiler/gui/moduleview.py
+sudo sed -i 's/import Queue/import queue/g' ~/CellProfiler/cellprofiler/gui/moduleview.py
+sudo sed -i 's/Queue.Queue(/queue.Queue(/g' ~/CellProfiler/cellprofiler/gui/moduleview.py
 
 # ~/CellProfiler/cellprofiler/gui/imagesetctrl.py:19 --> no moudle named 'wx.combo'
 # currently broken --> unclear what replacement module name is, pending next patch
+sudo sed -i 's/import wx.combo/from wx import ComboBox/g' ~/CellProfiler/cellprofiler/gui/imagesetctrl.py
 
+# ~/CellProfiler/cellprofiler/gui/pathlist.py:11 --> no module named 'urllib2'
+sudo sed -i 's/import urllib2/from urllib.request import urlopen/g' ~/CellProfiler/cellprofiler/gui/pathlist.py
 
+# ~/CellProfiler/cellprofiler/gui/pipelinecontroller.py:3 --> no module named cStringIO
+sudo sed -i 's/import cStringIO/from io import StringIO/g' ~/CellProfiler/cellprofiler/gui/pipelinecontroller.py
+sudo sed -i 's/cStringIO.StringIO/StringIO/g' ~/CellProfiler/cellprofiler/gui/pipelinecontroller.py
+
+# ~/CellProfiler/cellprofiler/gui/pipelinecontroller.py --> no module named exceptions (depreciated in python3)
+sudo sed -i 's/import exceptions/#import exceptions/g' ~/CellProfiler/cellprofiler/gui/pipelinecontroller.py
+
+# ~/CellProfiler/cellprofiler/gui/pipelinecontroller.py --> no module named 'Queue'
+sudo sed -i 's/import Queue/import queue/g' ~/CellProfiler/cellprofiler/gui/pipelinecontroller.py
+sudo sed -i 's/Queue.Queue(/queue.Queue(/g' ~/CellProfiler/cellprofiler/gui/pipelinecontroller.py
+
+# ~/CellProfiler/cellprofiler/gui/pipelinelistview.py:15 --> no module named StringIO
+sudo sed -i 's/import StringIO/from io import StringIO/g' ~/CellProfiler/cellprofiler/gui/pipelinelistview.py
+
+# pause here --> for next patch continue (new issue with wx.Frame)
 
 
 
