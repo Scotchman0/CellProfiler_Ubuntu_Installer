@@ -1,7 +1,12 @@
 # CellProfiler_Ubuntu_Installer
 
-**warning: build is out of date and is currently broken as of 6/22/21. Pending merge from develop branch to resolve dependency issues, download at own risk. ~Scotchman0
+# THIS REPO IS NO LONGER SUPPORTED OR MAINTAINED - PLEASE UTILIZE THE CONDA INSTALLATION INSTRUCTIONS FOR LINUX FOUND HERE: 
+https://github.com/CellProfiler/CellProfiler/wiki/Source-installation-(Linux)
 
+This repo filled a need that has passed for the original use case, and the creators have unified their platform in a way that is much more accessible. Thanks for visiting. 
+
+~Scotchman0 08/2/21
+---------------------------------------------------------------------------------------------------
 Install script for CellProfiler v3.1.9 on Ubuntu 18.04.3 LTS(+) - bash, installs python3.6
 
 proven to work on Ubuntu 18.04 and installs all dependencies. For support and queries, route to the Cellprofiler page on Github. This script is simply an installer to make it easier for users to get CellProfiler on their linux workstations with a supported version of python.
